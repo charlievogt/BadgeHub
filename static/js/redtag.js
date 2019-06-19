@@ -32,10 +32,10 @@ var redtag = {
                 self.canvas.parentElement.classList.remove('hidden')
                 self.draw();
             }
-            this.name_elem.onkeyup = createNametag;
-            this.status_elem.onkeyup = createNametag;
-            this.user_elem.onkeyup = createNametag;
-            this.form.addEventListener('change', createNametag);
+            this.asset_elem.onkeyup = createRedtag;
+            this.status_elem.onkeyup = createRedtag;
+            this.user_elem.onkeyup = createRedtag;
+            this.form.addEventListener('change', createRedtag);
         } else {
           console.error('unsupported browser');
         }
@@ -79,7 +79,7 @@ var redtag = {
     save_canvas : function(){
         var img = this.canvas.toDataURL("image/png");
         this.img_preview.src=img;
-        this.nametag_img_elem.value=img;
+        this.redtag_img_elem.value=img;
     },
 
     draw_text : function(){
@@ -87,7 +87,7 @@ var redtag = {
         var c_height = this.canvas.height;
         var c_width = this.canvas.width;
         
-        var text = this.name_elem.value + '(' + this.status_elem.value + ')';
+        var text = this.asset_elem.value + '(' + this.status_elem.value + ')';
         var fontface = 'sans-serif';
 
         // fit text on canvas
@@ -110,13 +110,13 @@ var redtag = {
         var c_height = this.canvas.height;
         var c_width = this.canvas.width;
 
-         if (this.name_elem.value === '' &&
+         if (this.asset_elem.value === '' &&
              this.status_elem.value === '' &&
              this.user_elem.value === ''){
                 return;
          }
                                  
-        var qr_text = this.name_elem.value + ';' + this.status_elem.value + ';' + this.user_elem.value;
+        var qr_text = this.asset_elem.value + ';' + this.status_elem.value + ';' + this.user_elem.value;
   
         // cell size
         var cs=Math.floor(c_height/70);
