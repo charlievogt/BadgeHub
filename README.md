@@ -1,9 +1,8 @@
-# Code For San Jose Login System
+# Red Tag Printer for Troubled Assets
 
-The **Code For San Jose Login System** prints out name tags which contain the guest's name and email address as a QR code, name in plain text, and the Code For San Jose Brigade logo. The guest information is recorded in a `.csv` file and automatically uploaded to Google sheets when the Sheets API is turned on. 
+The **Red Tag Printer for Troubled Assets** prints out red tags which contain the assets's number and trouble issue, technician name in plain text, and the RED TAG wordage. The information is recorded in a `.csv` file and automatically uploaded to Google sheets when the Sheets API is turned on. 
 
 
-![creating a name tag](static/images/nametag_web.gif)
 
 Pre-requisites
 --------------
@@ -29,7 +28,7 @@ The Bill of Materials provides the complete list of equipments, pricing, and lin
 
 </p></details>
 
-Setting up your Raspberry Pi as a name tag kiosk
+Setting up your Raspberry Pi as a red tag kiosk
 -------------------------------------------------
 Setting up your Raspberry Pi as a name tag kiosk involves two steps:
 
@@ -50,7 +49,7 @@ Optional step:
     
     ```
     cd ~/GitHub
-    git clone https://github.com/codeforsanjose/CFSJ-Login-System.git
+    git clone https://github.com/charlievogt/RedTag-System.git
     cd CFSJ-Login-System/
     ```
 3. Run the install script: `./install/install.sh`
@@ -84,7 +83,7 @@ After rebooting, the Raspberry Pi will automatically start Chromium in kiosk mod
 
 1. Open Chromium and browse to [https://developers.google.com/sheets/api/quickstart/python](https://developers.google.com/sheets/api/quickstart/python).
 2. Follow the instructions under "Step 1: Turn on the Google Sheets API" to create and download client_secret.json.
-3. Copy the file into the CFSJ-Login-System folder.
+3. Copy the file into the RedTag_System folder.
 
-The uploder.py copies the user name and email address of the guest from the `.csv` file into Google sheets. After a successful update, the `.csv` file is deleted. If the update fails, the user information is retained in the `.csv` file until a successful retry.
+The uploder.py copies the info from the `.csv` file into Google sheets. After a successful update, the `.csv` file is deleted. If the update fails, the user information is retained in the `.csv` file until a successful retry.
 
