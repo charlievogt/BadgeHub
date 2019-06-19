@@ -49,8 +49,8 @@ Optional step:
     
     ```
     cd ~/GitHub
-    git clone https://github.com/charlievogt/RedTag-System.git
-    cd CFSJ-Login-System/
+    git clone https://github.com/charlievogt/RedTag.git
+    cd RedTag/
     ```
 3. Run the install script: `./install/install.sh`
 
