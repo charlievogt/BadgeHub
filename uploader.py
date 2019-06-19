@@ -76,12 +76,12 @@ def write_spreadsheet(values):
         needs_header = True
 
     with open(csv_file, 'a') as csvfile:
-        fieldnames = ["Name", "Pronoun", "Email", "Timestamp"]
+        fieldnames = ["Asset", "Status", "User", "Timestamp"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         if needs_header:
             writer.writeheader()
         for row in values:
-            writer.writerow({"Name":row[0], "Pronoun":row[1], "Email":row[2], "Timestamp":row[3]})
+            writer.writerow({"Asset":row[0], "Status":row[1], "User":row[2], "Timestamp":row[3]})
 
 def update_spreadsheet(spreadsheet_id, data):
     credentials = get_credentials()
