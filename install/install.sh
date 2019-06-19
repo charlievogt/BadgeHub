@@ -2,8 +2,8 @@
 
 #########################################################
 #              Install script for the                   #
-#                Code For San Jose                      #
-#                  Login System                         #
+#                RedTag System                          #
+#  Fork from											#
 #  https://github.com/codeforsanjose/CFSJ-Login-System  #            
 #                                                       #
 #               (run this file once)                    #
