@@ -2,7 +2,7 @@
 var SERVER_ENDPOINT = '/print';
 
 
-var nametag = {
+var redtag = {
     canvas : null,
     margin_pct : 0.05,
 
@@ -15,17 +15,17 @@ var nametag = {
         this.logo = document.getElementById(logo_elem);
         this.form = document.getElementById(form_id);
         this.img_preview = document.getElementById(img_preview_id);
-        this.name_elem = this.form.elements["name"];
-        this.pronoun_elem = this.form.elements["pronoun"];
-        this.email_elem = this.form.elements["email"];
-        this.nametag_img_elem = this.form.elements["nametag_img"];
+        this.asset_elem = this.form.elements["asset"];
+        this.status_elem = this.form.elements["status"];
+        this.user_elem = this.form.elements["user"];
+        this.redtag_img_elem = this.form.elements["redtag_img"];
 
         if (this.canvas.getContext) {
             var self = this;
-            function createNametag(){
-                if (self.name_elem.value === '' &&
-                    self.pronoun_elem.value === '' &&
-                    self.email_elem.value === ''){
+            function createRedtag(){
+                if (self.asset_elem.value === '' &&
+                    self.status_elem.value === '' &&
+                    self.user_elem.value === ''){
                     self.canvas.parentElement.classList.add('hidden')
                     return;
                 }
@@ -33,8 +33,8 @@ var nametag = {
                 self.draw();
             }
             this.name_elem.onkeyup = createNametag;
-            this.pronoun_elem.onkeyup = createNametag;
-            this.email_elem.onkeyup = createNametag;
+            this.status_elem.onkeyup = createNametag;
+            this.user_elem.onkeyup = createNametag;
             this.form.addEventListener('change', createNametag);
         } else {
           console.error('unsupported browser');
@@ -87,7 +87,7 @@ var nametag = {
         var c_height = this.canvas.height;
         var c_width = this.canvas.width;
         
-        var text = this.name_elem.value + '(' + this.pronoun_elem.value + ')';
+        var text = this.name_elem.value + '(' + this.status_elem.value + ')';
         var fontface = 'sans-serif';
 
         // fit text on canvas
@@ -111,12 +111,12 @@ var nametag = {
         var c_width = this.canvas.width;
 
          if (this.name_elem.value === '' &&
-             this.pronoun_elem.value === '' &&
-             this.email_elem.value === ''){
+             this.status_elem.value === '' &&
+             this.user_elem.value === ''){
                 return;
          }
                                  
-        var qr_text = this.name_elem.value + ';' + this.pronoun_elem.value + ';' + this.email_elem.value;
+        var qr_text = this.name_elem.value + ';' + this.status_elem.value + ';' + this.user_elem.value;
   
         // cell size
         var cs=Math.floor(c_height/70);
@@ -195,5 +195,5 @@ var nametag = {
 
 
 (function(){
-    nametag.init('nametag_canvas', 'login_form', 'c4sj_logo', 'nametag_preview_surrogate');
+    redtag.init('redtag_canvas', 'login_form', 'redtag_logo', 'redtag_preview_surrogate');
 })();
