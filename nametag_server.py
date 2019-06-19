@@ -20,7 +20,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-def save_user_info(name, pronoun, email):
+def save_user_info(asset, status, user):
     needs_header = False
     csv_file = os.path.join(os.sep, get_script_path(), CSV_FILENAME)
     logger.info("using CSV file at {}".format(csv_file))
@@ -28,11 +28,11 @@ def save_user_info(name, pronoun, email):
         needs_header = True
 
     with open(csv_file, 'a') as csvfile:
-        fieldnames = ["Name", "Pronoun", "Email", "Timestamp"]
+        fieldnames = ["Asset", "Status", "User", "Timestamp"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         if needs_header:
             writer.writeheader()
-        writer.writerow({"Name":name, "Pronoun":pronoun, "Email":email, "Timestamp":datetime.datetime.now()})
+        writer.writerow({"Asset":asset, "Status":status, "User":user, "Timestamp":datetime.datetime.now()})
 
 def send_to_printer():
     logger.info("sending image to printer")
@@ -46,25 +46,25 @@ def root():
 @app.route('/signin', methods=['POST'])
 def signin():
     if request.method == 'POST':
-        logger.info("'name = '{}' pronoun = '{}' email = '{}' nametag_img = '{}'".format( str(request.form['name']), str(request.form['pronoun']), str(request.form['email']), str(request.form['nametag_img']) ) )
+        logger.info("'asset = '{}' status = '{}' user = '{}' redtag_img = '{}'".format( str(request.form['asset']), str(request.form['status']), str(request.form['user']), str(request.form['redtag_img']) ) )
         img_file = os.path.join(os.sep, get_script_path(), IMAGE_FILE)
         logger.info("saving temp image at {}".format(img_file))
         with open(img_file, "wb") as f:
             # Removing the prefix 'data:image/png;base64,'
-            data = request.form['nametag_img'].split(",")[1]
+            data = request.form['redtag_img'].split(",")[1]
             f.write(base64.b64decode(data))
-        save_user_info(request.form['name'], request.form['pronoun'], request.form['email'])
+        save_user_info(request.form['asset'], request.form['status'], request.form['user'])
 
         # print only if the submit button value is "print"
         if request.form['button'] == "print":
-            logger.info("Printing nametag for \"%s\""%request.form['name'])
+            logger.info("Printing redtag for \"%s\""%request.form['asset'])
             send_to_printer()
-            return render_template("thankyou.html", message="Your nametag will print soon.")
+            return render_template("thankyou.html", message="Your redtag will print soon.")
 
         # otherwise simply submit 
         elif request.form['button'] == "noprint":
-            logger.info("Not printing for \"{}\"".format(request.form['name']))
-            return render_template("thankyou.html", message="Successfully signed in, enjoy your hack night!")
+            logger.info("Not printing for \"{}\"".format(request.form['asset']))
+            return render_template("thankyou.html", message="Why did you do this?")
 
 
 def start_webserver():
@@ -72,4 +72,3 @@ def start_webserver():
 
 if __name__ == "__main__":
     start_webserver()
-
