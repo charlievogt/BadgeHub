@@ -24,7 +24,7 @@ form label input {
 form button {display:inline-block;float: right; margin: 1rem 1rem;font-size: 1em;width: 11em;}
 
 
-.redtag_preview {display:inline-block;width: 50%;float:right; padding: 2rem; box-sizing: border-box;}
+.redtag_preview {display:inline-block;width: 50%;float:right; padding: 2rem; box-sizing: border-box; background-color: red;}
 .redtag_preview.hidden {display:none;}
 #redtag_preview_surrogate {display:inline-block; border: 1px solid #3c3c3c; width: 100%;}
 
