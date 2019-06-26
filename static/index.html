@@ -20,20 +20,19 @@
         <input type="text" id="PreventChromeAutocomplete" 
           asset="PreventChromeAutocomplete" autocomplete="address-level4" />
       </div>
-      <input type="text" asset="redtag_img" hidden>
+      <input type="text" name="redtag_img" hidden>
       <label>
-        <span>Name</span>
-        <input type="text" asset="asset" placeholder="asset tag number" required autofocus>
+        <span>Asset Number</span>
+        <input type="text" name="asset" placeholder="asset tag number" required autofocus>
       </label>
       <label>
-        <span>Email address</span>
-        <input type="user" asset="user" placeholder="your username" required>
+        <span>User</span>
+        <input type="user" name="user" placeholder="your username" required>
       </label>
       <p> Status:</p>
       <div>
         <input type="checkbox" id="broken" value="broken"/>
         <label for="broken">Broken</label>
-        <input type="text" required autofocus>
       </div>
       <div>
         <input type="checkbox" id="too_old_to_use" value="too_old_to_use"/>
@@ -50,10 +49,10 @@
       <div>
         <input type="checkbox" id="other" value="other"/>
         <label for="other">Other</label>
-        <input type="text" required autofocus>
+        <input type="text" id="other_text"/>
       </div>
       <br/>
-      <button asset="button" type="submit" value="print">Print Red Tag</button>
+      <button asset="button" type="submit" value="signin">Print Red Tag</button>
     </form>
     <div class="redtag_preview hidden">
       <h2>RedTag preview:</h2>
